@@ -1,3 +1,4 @@
+// @flow
 module.exports = {
   extends: ['vacuumlabs', 'plugin:react-hooks/recommended', 'prettier'],
   plugins: ['react-native', 'flowtype'],
