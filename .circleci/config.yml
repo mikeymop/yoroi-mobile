@@ -14,7 +14,7 @@ jobs:
           at: ~/project
       - restore_cache:
           keys:
-          - v1-0-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+            - v1-0-dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
 
       # install rustup
       - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -25,10 +25,6 @@ jobs:
       - run: cargo install cargo-lipo
 
       - run:
-          name: Match bitrise's yarn version
-          command: sudo npm install -g yarn@${BITRISE_YARN_VER}
-
-      - run:
           name: Install Dependencies
           command: yarn install --network-concurrency 1
       - save_cache:
@@ -36,7 +32,6 @@ jobs:
           paths:
             - node_modules
             - yarn.lock
-
 
       - persist_to_workspace:
           root: .
@@ -66,7 +61,7 @@ jobs:
     <<: *rn_defaults
     steps:
       - attach_workspace:
-         at: ~/project
+          at: ~/project
 
       - run:
           name: Match bitrise's yarn version
